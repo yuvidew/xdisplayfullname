@@ -1,37 +1,25 @@
 import React, { useState } from 'react'
 
 const App = () => {
-  const [fullName , setFullName] = useState({
-    fname : "",
-    lname : "",
-  })
 
-  const [itsTrue , setItsTrue] = useState(false)
+  const [fullName , setFullName] = useState("")
 
-  const onChange = (e) => {
-    const {name , value} = e.target ;
-    setFullName({
-      ...fullName,
-      [name] : value
-    })
+  const onSubmit = (e) => {
+    e.preventDefault()
+    setFullName(`${e.target.elements["fname"].value} ${e.target.elements["lname"].value}`)
   }
 
     return (
       <section>
         <h1>Full Name Display</h1>
-        <form action="" onSubmit={(e) => {
-          e.preventDefault()
-          setItsTrue(!itsTrue)
-        }}>
+        <form action="" onSubmit={onSubmit}>
           <div>
             <label htmlFor="fname">First Name : </label>
             <input 
               type="text" 
               id='fname' 
               className='input' 
-              name = "fname"
-              value = {fullName.fname}
-              onChange={onChange}
+              // name = "fname"
               required 
             />
           </div>
@@ -42,15 +30,13 @@ const App = () => {
               id='lname' 
               className='input' 
               name = "lname"
-              value = {fullName.lname}
-              onChange={onChange}
               required 
             />
           </div>
           <button>Submit</button>
         </form>
 
-        {itsTrue && <p>Full Name: {fullName.fname} {fullName.lname} </p>}
+        {fullName.length !=0 && <p>Full Name: {fullName}</p>}
       </section>
     )
 }
