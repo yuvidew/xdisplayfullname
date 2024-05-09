@@ -33,7 +33,7 @@ const App = () => {
               required 
             />
           </div>
-          <button>Submit</button>
+          <button type='submit'>Submit</button>
         </form>
 
         {fullName.length !=0 && <p>Full Name: {fullName}</p>}
